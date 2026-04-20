@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.hayden.things-anki-claude</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/zsh</string>
+      <string>-lc</string>
+      <string>cd "/Users/hayden/Documents/programming/builds/things-claude-anki/things-anki-claude" &amp;&amp; /usr/bin/env npm run dev</string>
+    </array>
+
+    <!-- Run 3x/day; adjust as desired -->
+    <key>StartCalendarInterval</key>
+    <array>
+      <dict>
+        <key>Hour</key><integer>9</integer>
+        <key>Minute</key><integer>0</integer>
+      </dict>
+      <dict>
+        <key>Hour</key><integer>14</integer>
+        <key>Minute</key><integer>0</integer>
+      </dict>
+      <dict>
+        <key>Hour</key><integer>20</integer>
+        <key>Minute</key><integer>0</integer>
+      </dict>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <!-- Required -->
+      <key>ANTHROPIC_API_KEY</key>
+      <string>PUT_YOUR_KEY_HERE</string>
+
+      <!-- Optional overrides -->
+      <key>ANKI_DECK</key>
+      <string>Vocab::Inbox</string>
+      <key>ANKI_MODEL</key>
+      <string>Basic</string>
+      <key>ANKI_TAGS</key>
+      <string>things,vocab</string>
+      <key>THINGS_TAG_TO_WATCH</key>
+      <string>Anki</string>
+      <key>THINGS_TAG_PROCESSED</key>
+      <string>Anki-Added</string>
+      <key>ANTHROPIC_MODEL</key>
+      <string>claude-3-5-haiku-latest</string>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/things-anki-claude.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/things-anki-claude.err.log</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>
+

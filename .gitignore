@@ -1,0 +1,5 @@
+things-anki-claude/node_modules/
+things-anki-claude/dist/
+things-anki-claude/.env
+.DS_Store
+
