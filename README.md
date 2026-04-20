@@ -4,14 +4,16 @@ Add a new Things 3 Inbox todo tagged `Anki`, and this script will:
 
 1. Ask Claude for a concise definition + example (optionally using your Things notes as context)
 2. Add a `Basic` note to Anki via AnkiConnect
-3. Mark the Things todo as processed (removes `Anki`, adds `Anki-Added`)
+3. Mark the Things todo as completed (and removes `Anki`, adds `Anki-Added`)
 
 ## Prereqs
 
 - macOS + Things 3
 - Anki (desktop) running in the background
 - AnkiConnect add-on installed in Anki
-- An Anthropic API key exported as `ANTHROPIC_API_KEY`
+- Either:
+  - an Anthropic API key exported as `ANTHROPIC_API_KEY` (default), or
+  - an OpenRouter API key exported as `OPENROUTER_API_KEY`
 
 ## Setup
 
@@ -21,10 +23,19 @@ Add a new Things 3 Inbox todo tagged `Anki`, and this script will:
 npm install
 ```
 
-1. Export your Anthropic key (example for zsh)
+1. Choose an LLM provider
+
+Anthropic (default):
 
 ```bash
 export ANTHROPIC_API_KEY="..."
+```
+
+OpenRouter:
+
+```bash
+export LLM_PROVIDER="openrouter"
+export OPENROUTER_API_KEY="..."
 ```
 
 1. Make sure Anki is open, then run once
@@ -47,12 +58,28 @@ All optional env vars:
 
 - `THINGS_TAG_TO_WATCH` (default `Anki`)
 - `THINGS_TAG_PROCESSED` (default `Anki-Added`)
-- `ANKI_DECK` (default `Vocab::Inbox`)
+- `ANKI_DECK` (default `English Vocab`)
 - `ANKI_MODEL` (default `Basic`)
 - `ANKI_TAGS` (default `things,vocab`)
-- `ANTHROPIC_MODEL` (default `claude-3-5-haiku-latest`)
-- `ANTHROPIC_MAX_TOKENS` (default `350`)
+- `LLM_PROVIDER` (default `anthropic`, options: `anthropic` | `openrouter`)
+- `LLM_MODEL` (default: Anthropic `claude-3-5-haiku-latest`, OpenRouter `anthropic/claude-3.5-haiku`)
+- `LLM_MAX_TOKENS` (default `350`)
 
 ## Scheduling (2–3x/day)
 
-See `launchagent/com.hayden.things-anki-claude.plist` for a sample LaunchAgent you can customize.
+Run this to generate a LaunchAgent plist for *your* local repo path:
+
+```bash
+npm run install:launchagent
+```
+
+This writes to:
+
+- `~/Library/LaunchAgents/com.things-anki-claude.plist`
+
+Then edit that file to add your API key(s), and load it with:
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.things-anki-claude.plist
+```
+

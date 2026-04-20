@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/run.ts",
+    "install:launchagent": "tsx src/install-launchagent.ts",
     "run": "node --enable-source-maps dist/run.js",
     "build": "tsc -p tsconfig.json",
     "lint": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.40.1",
+    "openai": "^5.12.2",
     "zod": "^3.24.1"
   },
   "devDependencies": {

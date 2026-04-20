@@ -3,3 +3,6 @@ dist/
 .env
 .DS_Store
 
+# LaunchAgent (contains API keys; use the .template instead)
+launchagent/com.things-anki-claude.plist
+
