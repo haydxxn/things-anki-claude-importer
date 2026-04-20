@@ -18,7 +18,6 @@ Add a new Things 3 Inbox todo tagged `Anki`, and this script will:
 1. Install dependencies
 
 ```bash
-cd things-anki-claude
 npm install
 ```
 

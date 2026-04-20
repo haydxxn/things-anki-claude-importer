@@ -9,7 +9,7 @@
     <array>
       <string>/bin/zsh</string>
       <string>-lc</string>
-      <string>cd "/Users/hayden/Documents/programming/builds/things-claude-anki/things-anki-claude" &amp;&amp; /usr/bin/env npm run dev</string>
+      <string>cd "/Users/hayden/Documents/programming/builds/things-claude-anki" &amp;&amp; /usr/bin/env npm run dev</string>
     </array>
 
     <!-- Run 3x/day; adjust as desired -->
