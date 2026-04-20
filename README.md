@@ -65,7 +65,14 @@ All optional env vars:
 - `LLM_MODEL` (default: Anthropic `claude-3-5-haiku-latest`, OpenRouter `anthropic/claude-3.5-haiku`)
 - `LLM_MAX_TOKENS` (default `350`)
 
-## Scheduling (2–3x/day)
+## Cost / credit behavior
+
+- The script always queries Things + Anki locally.
+- **It only calls the LLM if there is at least one Things Inbox todo tagged `Anki` that isn't already in Anki.**
+  - If there are no matching todos, it exits immediately (no API cost).
+  - If a todo's `Front` already exists in your target deck, it skips the LLM and just completes the Things todo.
+
+## Scheduling (every 2 hours)
 
 Run this to generate a LaunchAgent plist for *your* local repo path:
 
@@ -81,5 +88,44 @@ Then edit that file to add your API key(s), and load it with:
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.things-anki-claude.plist
+```
+
+## Run / stop / logs
+
+Manual run (one-off):
+
+```bash
+npm run dev
+```
+
+Check if the background job is loaded:
+
+```bash
+launchctl list | rg "com.things-anki-claude"
+```
+
+Force a run immediately (because `RunAtLoad` is true):
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.things-anki-claude.plist
+launchctl load ~/Library/LaunchAgents/com.things-anki-claude.plist
+```
+
+Stop background job:
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.things-anki-claude.plist
+```
+
+Check logs:
+
+- `/tmp/things-anki-claude.out.log`
+- `/tmp/things-anki-claude.err.log`
+
+View logs:
+
+```bash
+tail -n 200 /tmp/things-anki-claude.out.log
+tail -n 200 /tmp/things-anki-claude.err.log
 ```
 

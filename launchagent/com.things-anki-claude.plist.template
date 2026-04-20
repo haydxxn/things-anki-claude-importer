@@ -12,22 +12,9 @@
       <string>cd "__REPO_DIR__" &amp;&amp; /usr/bin/env npm run dev</string>
     </array>
 
-    <!-- Run 3x/day; adjust as desired -->
-    <key>StartCalendarInterval</key>
-    <array>
-      <dict>
-        <key>Hour</key><integer>9</integer>
-        <key>Minute</key><integer>0</integer>
-      </dict>
-      <dict>
-        <key>Hour</key><integer>14</integer>
-        <key>Minute</key><integer>0</integer>
-      </dict>
-      <dict>
-        <key>Hour</key><integer>20</integer>
-        <key>Minute</key><integer>0</integer>
-      </dict>
-    </array>
+    <!-- Run every 2 hours (7200 seconds); adjust as desired -->
+    <key>StartInterval</key>
+    <integer>7200</integer>
 
     <key>EnvironmentVariables</key>
     <dict>

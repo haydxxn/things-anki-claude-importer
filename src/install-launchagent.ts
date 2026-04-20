@@ -18,6 +18,7 @@ async function main() {
 
   // Intentionally no launchctl side effects. User can edit API keys first.
   process.stdout.write(`Wrote LaunchAgent plist to:\n${targetPath}\n`);
+  process.stdout.write("Schedule: runs every 2 hours (see StartInterval in the plist).\n");
   process.stdout.write("Next: edit it to add your API key(s), then `launchctl load` it.\n");
 }
 
